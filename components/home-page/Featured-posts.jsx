@@ -1,5 +1,5 @@
 //components
-import PostGrid from "../posts/Posts-grid";
+import PostsGrid from "../posts/Posts-grid";
 //styles
 import classes from "./Featured-posts.module.css";
 
@@ -8,7 +8,7 @@ const FeaturedPosts = props =>
     return (
         <section className={ classes.latest }>
             <h2>Featured Posts</h2>
-            <PostGrid posts={ props.post } />
+            <PostsGrid posts={ props.post } />
         </section>
     );
 };
