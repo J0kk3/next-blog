@@ -1,27 +1,59 @@
+//next
+import Image from 'next/image';
 //packages
 import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 //components
 import PostHeader from "./Post-header";
 //style
 import classes from './Post-content.module.css';
 
-const DUMMY_POST =
+const PostContent = props =>
 {
-    slug: "getting-started-with-nextjs",
-    title: "Getting Started with Next.js",
-    image: "getting-started-nextjs.png",
-    date: "04-12-2022",
-    content: "# This is a first post",
-};
+    const { post } = props;
 
-const PostContent = () =>
-{
-    const imagePath = `/images/posts/${ DUMMY_POST.slug }/${ DUMMY_POST.image }`;
+    const imagePath = `/images/posts/${ post.slug }/${ post.image }`;
+
+    const customRenderers =
+    {
+        // image ()
+        // {
+        //     return (
+        //         <Image src={ `/images/posts/${ post.slug }/${ image.url }` } alt={ image.alt } width={ 600 } height={ 300 } />
+        //     );
+        // },
+        paragraph ( paragraph )
+        {
+            const { node } = paragraph;
+
+            if ( node.children[ 0 ].type === "image" )
+            {
+                const image = node.children[ 0 ];
+
+                return (
+                    <div className={ classes.image }>
+                        <Image src={ `/images/posts/${ post.slug }/${ image.url }` } alt={ image.alt } width={ 600 } height={ 300 } />
+                    </div>
+                );
+            }
+
+            return <p>{ paragraph.children }</p>;
+        },
+
+        code ( code )
+        {
+            const { language, value } = code;
+            return (
+                <SyntaxHighlighter style={ atomDark } language={ language } children={ value } />
+            );
+        }
+    };
 
     return (
         <article className={ classes.content }>
-            <PostHeader title={ DUMMY_POST.title } image={ imagePath } />
-            <ReactMarkdown>{ DUMMY_POST.content }</ReactMarkdown>
+            <PostHeader title={ post.title } image={ imagePath } />
+            <ReactMarkdown renderers={ customRenderers }>{ post.content }</ReactMarkdown>
         </article>
     );
 };
