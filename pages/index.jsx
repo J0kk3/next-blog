@@ -1,3 +1,5 @@
+//next
+import Head from "next/head";
 //lib
 import { getFeaturedPosts } from "../lib/posts-util";
 //components
@@ -8,6 +10,10 @@ const HomePage = props =>
 {
     return (
         <>
+            <Head>
+                <title>Jockes Blog</title>
+                <meta name="description" content="I post about nothing at all" />
+            </Head>
             <Hero />
             <FeaturedPosts posts={ props.posts } />
         </>
