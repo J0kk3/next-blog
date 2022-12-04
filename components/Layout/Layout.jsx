@@ -1,7 +1,7 @@
 //components
-import MainNavigation from './MainNavigation';
+import MainNavigation from "./Main-navigation";
 
-const Layout = () =>
+const Layout = props =>
 {
     return (
         <>
