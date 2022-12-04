@@ -1,8 +1,8 @@
 //next
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 //styles
-import classes from "./Posts-grid.module.css";
+import classes from "./Post-item.module.css";
 
 const PostItem = props =>
 {
@@ -21,7 +21,7 @@ const PostItem = props =>
         <li className={ classes.post }>
             <Link href={ linkPath }>
                     <div className={ classes.image }>
-                        <Image src={ imagePath } alt={ title } width={ 300 } height={ 200 } fill />
+                        <Image src={ imagePath } alt={ title } width={ 300 } height={ 200 } layout="responsive" />
                     </div>
                     <div className={ classes.content }>
                         <h3>{ title }</h3>

@@ -8,7 +8,7 @@ const FeaturedPosts = props =>
     return (
         <section className={ classes.latest }>
             <h2>Featured Posts</h2>
-            <PostsGrid posts={ props.post } />
+            <PostsGrid posts={ props.posts } />
         </section>
     );
 };
