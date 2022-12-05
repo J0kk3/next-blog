@@ -21,10 +21,11 @@ const handler = async ( req, res ) =>
         };
 
         let client;
+        let connectionString = `mongodb+srv://${ process.env.mongodb_username }:${ process.env.mongodb_password }@${ process.env.mongodb_clustername }.fbkic6k.mongodb.net/${ process.env.mongodb_database }?retryWrites=true&w=majority`;
 
         try
         {
-            client = await MongoClient.connect( "mongodb+srv://admin:admin>@cluster0.fbkic6k.mongodb.net/my-site?retryWrites=true&w=majority" );
+            client = await MongoClient.connect( connectionString );
         } catch ( error )
         {
             res.status( 500 ).json( { message: "Could not store message." } );
